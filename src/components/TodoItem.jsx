@@ -24,7 +24,7 @@ export const TodoItem = ({ todo }) => {
 
   if (isEditing) {
     return (
-      <li className="todo-item editing">
+      <div className="task-card">
         <input
           type="text"
           value={editText}
@@ -33,24 +33,41 @@ export const TodoItem = ({ todo }) => {
           onBlur={handleSaveEdit}
           autoFocus
         />
-      </li>
+      </div>
     );
   }
 
   return (
-    <li className={`todo-item ${todo.completed ? 'completed' : ''}`}>
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={() => toggleTodo(todo.id)}
-      />
-      <span onDoubleClick={() => setIsEditing(true)}>{todo.text}</span>
-      <button
-        className="delete-btn"
-        onClick={() => deleteTodo(todo.id)}
-      >
-        ✕
-      </button>
-    </li>
+    <div className="task-card">
+      <div className="task-header">
+        <div className="task-row">
+          <input
+            type="checkbox"
+            checked={todo.completed}
+            onChange={() => toggleTodo(todo.id)}
+          />
+          <span
+            className={`task-title ${todo.completed ? 'completed' : ''}`}
+            onDoubleClick={() => setIsEditing(true)}
+          >
+            {todo.text}
+          </span>
+        </div>
+        <div className="task-actions">
+          <button
+            className="btn"
+            onClick={() => setIsEditing(true)}
+          >
+            Edit
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => deleteTodo(todo.id)}
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };

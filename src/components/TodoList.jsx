@@ -21,13 +21,13 @@ export const TodoList = () => {
   return (
     <div className="todo-list-container">
       {filteredTodos.length === 0 ? (
-        <p className="empty-message">No todos yet! Add one above.</p>
+        <p className="no-tasks">No todos yet! Add one above.</p>
       ) : (
-        <ul className="todo-list">
+        <div className="todo-list">
           {filteredTodos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
